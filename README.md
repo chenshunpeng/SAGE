@@ -52,67 +52,66 @@ Remove parameter `--crossimage_encoder` to run the SAGE without cross-image enco
 
 ## Trained Model
 
-
 **🔥 Performance Edition.**
 Equipped with the InteractHead module to model cross-image dependencies, achieving maximum retrieval accuracy.
 
-<table style="margin: auto">
-  <thead>
-    <tr>
-      <th>model</th>
-      <th>cross-image<br/>encoder</th>
-      <th>total params</th>
-      <th>trainable params</th>
-      <th>download</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>SAGE</td>
-      <td align="center">:white_check_mark:</td>
-      <td align="right">314.74 M</td>
-      <td align="right">10.38 M</td>
-      <td>
-        <a href="https://drive.google.com/file/d/1oybKqxFYIHYwoA9HuG7tlaCif7DcJsd4/view?usp=sharing">link</a>
-      </td>
-    </tr>
-  </tbody>
+<table style="margin: auto; text-align: center;">
+  <thead>
+    <tr>
+      <th align="center">model</th>
+      <th align="center">cross-image<br/>encoder</th>
+      <th align="center">total params</th>
+      <th align="center">trainable params</th>
+      <th align="center">download</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center">SAGE</td>
+      <td align="center">:white_check_mark:</td>
+      <td align="center">314.74 M</td>
+      <td align="center">10.38 M</td>
+      <td align="center">
+        <a href="https://drive.google.com/file/d/1oybKqxFYIHYwoA9HuG7tlaCif7DcJsd4/view?usp=sharing">link</a>
+      </td>
+    </tr>
+  </tbody>
 </table>
 <br>
 
 **⚡ Efficiency Edition.**
 Streamlined for high inference efficiency, maintaining extremely low trainable parameters via Parameter-Efficient Fine-Tuning (PEFT).
 
-<table style="margin: auto">
-  <thead>
-    <tr>
-      <th>model</th>
-      <th>cross-image<br/>encoder</th>
-      <th>total params</th>
-      <th>trainable params</th>
-      <th>download</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>SAGE (ViT-B)</td>
-      <td align="center">:x:</td>
-      <td align="right">88.54 M</td>
-      <td align="right">1.96 M</td>
-      <td>
-        <a href="https://drive.google.com/file/d/1P4NrddzJ9nWo9Wdan3uDi6zS6E-ub2y6/view?usp=sharing">link</a>
-      </td>
-    </tr>
-    <tr>
-      <td>SAGE (ViT-L)</td>
-      <td align="center">:x:</td>
-      <td align="right">306.86 M</td>
-      <td align="right">2.50 M</td>
-      <td>
-        <a href="https://drive.google.com/file/d/1dML3VyYBixH4ZzNfoJavhKbS1b7hvif9/view?usp=sharing">link</a>
-      </td>
-    </tr>
-  </tbody>
+<table style="margin: auto; text-align: center;">
+  <thead>
+    <tr>
+      <th align="center">model</th>
+      <th align="center">cross-image<br/>encoder</th>
+      <th align="center">total params</th>
+      <th align="center">trainable params</th>
+      <th align="center">download</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center">SAGE (ViT-B)</td>
+      <td align="center">:x:</td>
+      <td align="center">88.54 M</td>
+      <td align="center">1.96 M</td>
+      <td align="center">
+        <a href="https://drive.google.com/file/d/1P4NrddzJ9nWo9Wdan3uDi6zS6E-ub2y6/view?usp=sharing">link</a>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">SAGE (ViT-L)</td>
+      <td align="center">:x:</td>
+      <td align="center">306.86 M</td>
+      <td align="center">2.50 M</td>
+      <td align="center">
+        <a href="https://drive.google.com/file/d/1dML3VyYBixH4ZzNfoJavhKbS1b7hvif9/view?usp=sharing">link</a>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 Or you can download **all models** at once at [this link](https://drive.google.com/drive/folders/1-nQi9fhJPuiqHkcrGqBoIwiemnQ2L1-m?usp=sharing).
