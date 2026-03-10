@@ -1,6 +1,6 @@
 # SAGE
 
-This is the official repository for the ICLR 2026 paper "[SAGE: Spatial-visual Adaptive Graph Exploration for Efficient Visual Place Recognition](https://openreview.net/forum?id=DCpbEXqPvS)".
+This is the official repository for the ICLR 2026 paper "SAGE: Spatial-visual Adaptive Graph Exploration for Efficient Visual Place Recognition".
 
 [[ICLR OpenAccess](https://openreview.net/forum?id=DCpbEXqPvS)] [[ArXiv](https://arxiv.org/abs/2509.25723)] [[BibTex](https://github.com/chenshunpeng/SAGE?tab=readme-ov-file#Citation)]
 
@@ -32,21 +32,21 @@ This repo follows the [Visual Geo-localization Benchmark](https://github.com/gmb
 
 ## Test
 
-To evaluate the trained model:
+**To evaluate the trained model:**
 
 ```
 python3 eval.py --eval_datasets_folder=/path/to/datasets --crossimage_encoder --ckpt_path=/weights/SAGE.pth
 ```
-**Note:** By default, `--eval_dataset_names` will sequentially evaluate on 8 datasets (sped, amstertime, msls, pitts30k, tokyo247, pitts250k, nordland, eynsham). You can modify this argument according to your specific dataset names.
+Note: By default, `--eval_dataset_names` will sequentially evaluate on 8 datasets (sped, amstertime, msls, pitts30k, tokyo247, pitts250k, nordland, eynsham). You can modify this argument according to your specific dataset names.
 
-To add PCA:
+**To add PCA:**
 
 ```
 python3 eval.py --eval_datasets_folder=/path/to/datasets --crossimage_encoder --ckpt_path=./weights/SAGE.pth --pca_dim=4096 --pca_dataset_folder=/path/to/datasets/msls/images/train
 ```
-**Note:** For PCA computation, the script prioritizes loading a local cache. If absent, it extracts up to $2^{14}$ samples to compute high-dimensional features in batches, fits Sklearn, and saves the PCA parameters.
+Note: For PCA computation, the script prioritizes loading a local cache. If absent, it extracts up to $2^{14}$ samples to compute high-dimensional features in batches, fits Sklearn, and saves the PCA parameters.
 
-### SAGE without cross-image encoder
+**SAGE without cross-image encoder:**
 
 Remove parameter `--crossimage_encoder` to run the SAGE without cross-image encoder.
 
@@ -117,12 +117,12 @@ Streamlined for high inference efficiency, maintaining extremely low trainable p
 Or you can download **all models** at once at [this link](https://drive.google.com/drive/folders/1-nQi9fhJPuiqHkcrGqBoIwiemnQ2L1-m?usp=sharing).
 
 ## To-do
-- [x] Public release of evaluation code and pretrained SAGE model  
-- [ ] Public release of the training code (coming soon)
-- [ ] More detailed documentation (coming soon)
+- [x] Public release of evaluation code and pretrained SAGE model.
+- [ ] Public release of the training code (coming soon).
+- [ ] More detailed documentation (coming soon).
 
 ## Related Work
-Our another work (two-stage VPR based on DINOv2) [FoL](https://arxiv.org/abs/2504.09881) achieved SOTA performance on several datasets. The code is released at [here](https://github.com/chenshunpeng/FoL).
+Our another AAAI 2025 work (two-stage VPR based on DINOv2) [FoL](https://arxiv.org/abs/2504.09881) achieved SOTA performance on several datasets. The code is released at [here](https://github.com/chenshunpeng/FoL).
 
 ## Acknowledgements
 Parts of this repo are inspired by the following repositories:
@@ -132,7 +132,7 @@ Parts of this repo are inspired by the following repositories:
 - [GSV-Cities](https://github.com/amaralibey/gsv-cities), [MixVPR](https://github.com/amaralibey/MixVPR)
 
 ## Citation
-If you find this repo useful for your research, please consider leaving a star⭐️ and citing the paper
+If you find this repo useful for your research, please consider leaving a star⭐️ and citing the paper.
 ```
 @inproceedings{SAGE,
     title={{SAGE}: Spatial-visual Adaptive Graph Exploration for Efficient Visual Place Recognition},
