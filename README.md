@@ -30,6 +30,29 @@ This repo follows the [Visual Geo-localization Benchmark](https://github.com/gmb
                     └── queries
 ```
 
+## Setup & Requirements
+**Quick install:**
+```bash
+# create and activate conda env
+conda create -n sage python=3.10.15 -y
+conda activate sage
+
+# install dependencies
+pip install -r requirements.txt
+```
+**Key dependencies:**
+```
+faiss-gpu==1.7.2
+numpy==1.26.4
+pytorch-metric-learning==2.3.0
+scikit-learn==1.5.2
+timm==1.0.15
+torch==2.1.0
+torchvision==0.16.0
+xformers==0.0.22
+```
+> **Note — reproducibility:** Feature extraction and retrieval are sensitive to minor numerical differences across versions of libraries like `faiss-gpu`, `torch`, and `numpy`. Please use the exact versions in [requirements.txt](https://github.com/chenshunpeng/SAGE/blob/main/requirements.txt) to match our paper's results.
+
 ## Test
 
 **To evaluate the trained model:**
