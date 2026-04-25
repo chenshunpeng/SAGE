@@ -93,7 +93,7 @@ Equipped with the InteractHead module to model cross-image dependencies, achievi
       <td align="center">SAGE</td>
       <td align="center">:white_check_mark:</td>
       <td align="center">314.74 M</td>
-      <td align="center">10.38 M</td>
+         <td align="center">$\color{red}{\mathbf{10.38\ M}}$</td>
       <td align="center">
         <a href="https://drive.google.com/file/d/1oybKqxFYIHYwoA9HuG7tlaCif7DcJsd4/view?usp=sharing">link</a>
       </td>
@@ -142,7 +142,7 @@ Streamlined for high inference efficiency, maintaining extremely low trainable p
       <td align="center">SAGE (ViT-B)</td>
       <td align="center">:x:</td>
       <td align="center">88.54 M</td>
-      <td align="center">1.96 M</td>
+         <td align="center">$\color{red}{\mathbf{1.96\ M}}$</td>
       <td align="center">
         <a href="https://drive.google.com/file/d/1P4NrddzJ9nWo9Wdan3uDi6zS6E-ub2y6/view?usp=sharing">link</a>
       </td>
@@ -151,7 +151,7 @@ Streamlined for high inference efficiency, maintaining extremely low trainable p
       <td align="center">SAGE (ViT-L)</td>
       <td align="center">:x:</td>
       <td align="center">306.86 M</td>
-      <td align="center">2.50 M</td>
+         <td align="center">$\color{red}{\mathbf{2.50\ M}}$</td>
       <td align="center">
         <a href="https://drive.google.com/file/d/1dML3VyYBixH4ZzNfoJavhKbS1b7hvif9/view?usp=sharing">link</a>
       </td>
