@@ -102,6 +102,27 @@ Equipped with the InteractHead module to model cross-image dependencies, achievi
 </table>
 <br>
 
+**Performance Edition Results at 322×322**
+
+<table style="width:100%; border-collapse: collapse; font-size: 12px;">
+    <thead>
+        <tr>
+            <th style="text-align:left;">Dataset</th>
+            <th>R@1</th><th>R@5</th><th>R@10</th>
+            <th style="text-align:left;">Dataset</th>
+            <th>R@1</th><th>R@5</th><th>R@10</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>Pitts30k-test</td><td>95.8</td><td>97.8</td><td>98.4</td><td>MSLS-val</td><td>94.5</td><td>97.4</td><td>97.8</td></tr>
+        <tr><td>Nordland**</td><td>96.0</td><td>98.9</td><td>99.4</td><td>Tokyo24/7</td><td>97.5</td><td>99.0</td><td>99.4</td></tr>
+        <tr><td>SPED</td><td>98.8</td><td>99.7</td><td>100.0</td><td>Pitts250k-test</td><td>98.4</td><td>99.4</td><td>99.6</td></tr>
+        <tr><td>Eynsham</td><td>93.1</td><td>96.2</td><td>97.0</td><td>AmsterTime</td><td>83.5</td><td>93.3</td><td>95.4</td></tr>
+    </tbody>
+</table>
+
+For Nordland variants: `Nordland*` uses 2,760 summer queries against a 27,592-image winter database, while `Nordland**` uses the full 27,592 winter queries against a 27,592-image summer database.
+
 **⚡ Efficiency Edition.**
 Streamlined for high inference efficiency, maintaining extremely low trainable parameters via Parameter-Efficient Fine-Tuning (PEFT).
 
@@ -135,6 +156,34 @@ Streamlined for high inference efficiency, maintaining extremely low trainable p
       </td>
     </tr>
   </tbody>
+</table>
+
+**Efficiency Edition Results at 322×322**
+
+<table style="width:100%; border-collapse: collapse; font-size: 12px;">
+    <thead>
+        <tr>
+            <th rowspan="2" style="text-align:left;">Dataset</th>
+            <th colspan="3"> <a href="https://drive.google.com/file/d/1P4NrddzJ9nWo9Wdan3uDi6zS6E-ub2y6/view?usp=sharing">ViT-B</a> </th>
+            <th colspan="3"> <a href="https://drive.google.com/file/d/1dML3VyYBixH4ZzNfoJavhKbS1b7hvif9/view?usp=sharing">ViT-L</a> </th>
+        </tr>
+        <tr>
+            <th>R@1</th><th>R@5</th><th>R@10</th>
+            <th>R@1</th><th>R@5</th><th>R@10</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>Pitts30k-test</td><td>93.4</td><td>97.0</td><td>97.9</td><td>94.7</td><td>97.7</td><td>98.4</td></tr>
+        <tr><td>MSLS-val</td><td>93.4</td><td>97.3</td><td>97.6</td><td>94.2</td><td>97.8</td><td>98.1</td></tr>
+        <tr><td>Nordland**</td><td>94.1</td><td>98.0</td><td>98.8</td><td>94.8</td><td>98.2</td><td>98.9</td></tr>
+        <tr><td>Tokyo24/7</td><td>97.1</td><td>98.4</td><td>99.0</td><td>98.1</td><td>98.1</td><td>98.7</td></tr>
+        <tr><td>SPED</td><td>91.8</td><td>95.7</td><td>96.5</td><td>92.1</td><td>96.2</td><td>96.9</td></tr>
+        <tr><td>Pitts250k-test</td><td>95.7</td><td>98.6</td><td>99.2</td><td>96.9</td><td>99.2</td><td>99.6</td></tr>
+        <tr><td>Nordland*</td><td>86.7</td><td>95.9</td><td>97.0</td><td>87.4</td><td>96.2</td><td>97.5</td></tr>
+        <tr><td>Eynsham</td><td>92.3</td><td>95.8</td><td>96.5</td><td>92.3</td><td>95.9</td><td>96.7</td></tr>
+        <tr><td>SF-XL-Small</td><td>88.8</td><td>90.5</td><td>90.9</td><td>89.0</td><td>91.8</td><td>92.2</td></tr>
+        <tr><td>AmsterTime</td><td>63.1</td><td>82.5</td><td>86.2</td><td>65.6</td><td>86.7</td><td>90.4</td></tr>
+    </tbody>
 </table>
 
 Or you can download **all models** at once at [this link](https://drive.google.com/drive/folders/1-nQi9fhJPuiqHkcrGqBoIwiemnQ2L1-m?usp=sharing).
