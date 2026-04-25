@@ -102,7 +102,7 @@ Equipped with the InteractHead module to model cross-image dependencies, achievi
 </table>
 <br>
 
-**Performance Edition Results at 322×322**
+**Results at 322×322 (with cross-image encoder)**
 <table style="width:100%; border-collapse: collapse; font-size: 12px;">
     <thead>
         <tr>
@@ -121,6 +121,8 @@ Equipped with the InteractHead module to model cross-image dependencies, achievi
 </table>
 
 For Nordland variants: `Nordland*` uses 2,760 summer queries against a 27,592-image winter database, while `Nordland**` uses the full 27,592 winter queries against a 27,592-image summer database.
+
+---
 
 **⚡ Efficiency Edition.**
 Streamlined for high inference efficiency, maintaining extremely low trainable parameters via Parameter-Efficient Fine-Tuning (PEFT).
@@ -157,7 +159,7 @@ Streamlined for high inference efficiency, maintaining extremely low trainable p
   </tbody>
 </table>
 
-**Efficiency Edition Results at 322×322**
+**Results at 322×322 (without cross-image encoder)**
 <table style="width:100%; border-collapse: collapse; font-size: 12px;">
     <thead>
         <tr>
