@@ -103,7 +103,6 @@ Equipped with the InteractHead module to model cross-image dependencies, achievi
 <br>
 
 **Performance Edition Results at 322×322**
-
 <table style="width:100%; border-collapse: collapse; font-size: 12px;">
     <thead>
         <tr>
@@ -159,7 +158,6 @@ Streamlined for high inference efficiency, maintaining extremely low trainable p
 </table>
 
 **Efficiency Edition Results at 322×322**
-
 <table style="width:100%; border-collapse: collapse; font-size: 12px;">
     <thead>
         <tr>
