@@ -51,7 +51,7 @@ torch==2.1.0
 torchvision==0.16.0
 xformers==0.0.22
 ```
-> **Note — reproducibility:** Feature extraction and retrieval are sensitive to minor numerical differences across versions of libraries like `faiss-gpu`, `torch`, and `numpy`. Please use the exact versions in [requirements.txt](https://github.com/chenshunpeng/SAGE/blob/main/requirements.txt) to match our paper's results.
+> **Note — reproducibility:** Feature extraction and retrieval are sensitive to minor numerical differences across versions of libraries like `faiss-gpu`, `torch`, and `numpy`. Please use the exact versions in [requirements.txt](https://github.com/chenshunpeng/SAGE/blob/main/requirements.txt).
 
 ## Test
 
@@ -71,13 +71,15 @@ Note: For PCA computation, the script prioritizes loading a local cache. If abse
 
 **Exact low-memory retrieval:**
 
-For large-scale benchmarks such as [SF-XL](https://github.com/gmberton/cosplace), the default evaluation path keeps all database descriptors in memory and builds a full FAISS flat index. If your server has limited RAM, enable `--efficient_ram_testing` to use the exact low-memory retrieval mode:
+For large-scale benchmarks such as [SF-XL](https://github.com/gmberton/cosplace), the default evaluation path keeps all database descriptors in memory and builds a full FAISS flat index. If your server has limited RAM, enable `--efficient_ram_testing`:
 
 ```
 --efficient_ram_testing
 ```
 
 This mode keeps the query descriptors in memory, streams database descriptors in dynamic chunks, searches each chunk with float32 `faiss.IndexFlatL2`, and merges the global Top-K results. Before feature extraction starts, the script reports the database size, chunk size, estimated minimum retrieval memory, recommended available memory, and current system memory.
+
+For the full [SF-XL](https://github.com/gmberton/cosplace) series, enabling this switch reduces the estimated retrieval-stage RAM from about $\color{red}{\mathbf{176.7\ GiB}}$ in the default all-in-memory path to about $\color{red}{\mathbf{1.85\ GiB}}$ minimum extra RAM (recommended available RAM: $\color{red}{\mathbf{2.32\ GiB}}$; model/DataLoader memory excluded).
 
 The `SF_XL` shortcut evaluates all four SF-XL query sets in one run, sharing the same database extraction and reporting results separately for `SF_XL_v1`, `SF_XL_v2`, `SF_XL_night`, and `SF_XL_occlusion`:
 
