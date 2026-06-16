@@ -160,105 +160,88 @@ Streamlined for high inference efficiency, maintaining extremely low trainable p
 </table>
 
 **Results at 322×322 (without cross-image encoder)**
-<table style="width:100%; border-collapse: collapse; font-size: 9px; table-layout: fixed;">
+<table style="width:100%; border-collapse: collapse; font-size: 10px; table-layout: fixed;">
     <thead>
         <tr>
-            <th style="text-align:left; width:13%;">Dataset</th>
-            <th style="width:18%;">
+            <th style="text-align:left; width:13%; padding:4px 5px; line-height:1.25;">Dataset</th>
+            <th style="width:18%; padding:4px 5px; line-height:1.25; text-align:center;">
                 <a href="https://drive.google.com/file/d/1P4NrddzJ9nWo9Wdan3uDi6zS6E-ub2y6/view?usp=sharing">ViT-B</a><br>
-                <span style="white-space: nowrap;">R@1 R@5 R@10</span>
+                <span style="white-space: nowrap;">R@1 @5 @10</span>
             </th>
-            <th style="width:18%;">
+            <th style="width:18%; padding:4px 5px; line-height:1.25; text-align:center;">
                 <a href="https://drive.google.com/file/d/1dML3VyYBixH4ZzNfoJavhKbS1b7hvif9/view?usp=sharing">ViT-L</a><br>
-                <span style="white-space: nowrap;">R@1 R@5 R@10</span>
+                <span style="white-space: nowrap;">R@1 @5 @10</span>
             </th>
-            <th style="text-align:left; width:13%;">Dataset</th>
-            <th style="width:18%;">
+            <th style="text-align:left; width:13%; padding:4px 5px; line-height:1.25;">Dataset</th>
+            <th style="width:18%; padding:4px 5px; line-height:1.25; text-align:center;">
                 <a href="https://drive.google.com/file/d/1P4NrddzJ9nWo9Wdan3uDi6zS6E-ub2y6/view?usp=sharing">ViT-B</a><br>
-                <span style="white-space: nowrap;">R@1 R@5 R@10</span>
+                <span style="white-space: nowrap;">R@1 @5 @10</span>
             </th>
-            <th style="width:18%;">
+            <th style="width:18%; padding:4px 5px; line-height:1.25; text-align:center;">
                 <a href="https://drive.google.com/file/d/1dML3VyYBixH4ZzNfoJavhKbS1b7hvif9/view?usp=sharing">ViT-L</a><br>
-                <span style="white-space: nowrap;">R@1 R@5 R@10</span>
+                <span style="white-space: nowrap;">R@1 @5 @10</span>
             </th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>Pitts30k-test</td>
-            <td style="white-space: nowrap; font-family: monospace;">93.4 97.0 97.9</td>
-            <td style="white-space: nowrap; font-family: monospace;">94.7 97.7 98.4</td>
-            <td>Pitts250k-test</td>
-            <td style="white-space: nowrap; font-family: monospace;">95.7 98.6 99.2</td>
-            <td style="white-space: nowrap; font-family: monospace;">96.9 99.2 99.6</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">Pitts30k-test</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">93.4 97.0 97.9</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">94.7 97.7 98.4</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">Pitts250k-test</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">95.7 98.6 99.2</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">96.9 99.2 99.6</td>
         </tr>
         <tr>
-            <td>MSLS-val</td>
-            <td style="white-space: nowrap; font-family: monospace;">93.4 97.3 97.6</td>
-            <td style="white-space: nowrap; font-family: monospace;">94.2 97.8 98.1</td>
-            <td>Nordland*</td>
-            <td style="white-space: nowrap; font-family: monospace;">86.7 95.9 97.0</td>
-            <td style="white-space: nowrap; font-family: monospace;">87.4 96.2 97.5</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">MSLS-val</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">93.4 97.3 97.6</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">94.2 97.8 98.1</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">Nordland*</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">86.7 95.9 97.0</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">87.4 96.2 97.5</td>
         </tr>
         <tr>
-            <td>Nordland**</td>
-            <td style="white-space: nowrap; font-family: monospace;">94.1 98.0 98.8</td>
-            <td style="white-space: nowrap; font-family: monospace;">94.8 98.2 98.9</td>
-            <td>Eynsham</td>
-            <td style="white-space: nowrap; font-family: monospace;">92.3 95.8 96.5</td>
-            <td style="white-space: nowrap; font-family: monospace;">92.3 95.9 96.7</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">Nordland**</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">94.1 98.0 98.8</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">94.8 98.2 98.9</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">Eynsham</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">92.3 95.8 96.5</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">92.3 95.9 96.7</td>
         </tr>
         <tr>
-            <td>Tokyo24/7</td>
-            <td style="white-space: nowrap; font-family: monospace;">97.1 98.4 99.0</td>
-            <td style="white-space: nowrap; font-family: monospace;">98.1 98.1 98.7</td>
-            <td>SF-XL-Small</td>
-            <td style="white-space: nowrap; font-family: monospace;">88.8 90.5 90.9</td>
-            <td style="white-space: nowrap; font-family: monospace;">89.0 91.8 92.2</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">Tokyo24/7</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">97.1 98.4 99.0</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">98.1 98.1 98.7</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SF-XL-Small</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">88.8 90.5 90.9</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">89.0 91.8 92.2</td>
         </tr>
         <tr>
-            <td>SPED</td>
-            <td style="white-space: nowrap; font-family: monospace;">91.8 95.7 96.5</td>
-            <td style="white-space: nowrap; font-family: monospace;">92.1 96.2 96.9</td>
-            <td>AmsterTime</td>
-            <td style="white-space: nowrap; font-family: monospace;">63.1 82.5 86.2</td>
-            <td style="white-space: nowrap; font-family: monospace;">65.6 86.7 90.4</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SPED</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">91.8 95.7 96.5</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">92.1 96.2 96.9</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">AmsterTime</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">63.1 82.5 86.2</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">65.6 86.7 90.4</td>
         </tr>
         <tr>
-            <td>SF-XL-testv1</td>
-            <td style="white-space: nowrap; font-family: monospace;">92.9 95.6 96.5</td>
-            <td style="white-space: nowrap; font-family: monospace;">95.7 97.4 97.7</td>
-            <td>SF-XL-testv2</td>
-            <td style="white-space: nowrap; font-family: monospace;">94.6 98.0 98.7</td>
-            <td style="white-space: nowrap; font-family: monospace;">94.8 98.3 99.0</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SF-XL-testv1</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">92.9 95.6 96.5</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">95.7 97.4 97.7</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SF-XL-testv2</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">94.6 98.0 98.7</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">94.8 98.3 99.0</td>
         </tr>
         <tr>
-            <td>SF-XL-occlusion</td>
-            <td style="white-space: nowrap; font-family: monospace;">57.9 64.5 68.4</td>
-            <td style="white-space: nowrap; font-family: monospace;">51.3 68.4 73.7</td>
-            <td>SF-XL-night</td>
-            <td style="white-space: nowrap; font-family: monospace;">53.2 65.7 71.5</td>
-            <td style="white-space: nowrap; font-family: monospace;">59.9 73.8 77.9</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SF-XL-occlusion</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">57.9 64.5 68.4</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">51.3 68.4 73.7</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SF-XL-night</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">53.2 65.7 71.5</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">59.9 73.8 77.9</td>
         </tr>
     </tbody>
 </table>
-
-<style>
-table th,
-table td {
-    padding: 4px 5px;
-    line-height: 1.25;
-    text-align: center;
-}
-
-table td:first-child,
-table td:nth-child(4) {
-    text-align: left;
-    word-break: break-word;
-}
-</style>
-
-
 
 Or you can download **all models** at once at [this link](https://drive.google.com/drive/folders/1-nQi9fhJPuiqHkcrGqBoIwiemnQ2L1-m?usp=sharing).
 
