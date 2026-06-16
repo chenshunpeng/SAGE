@@ -160,7 +160,7 @@ Streamlined for high inference efficiency, maintaining extremely low trainable p
 </table>
 
 **Results at 322×322 (without cross-image encoder)**
-<table style="width:100%; border-collapse: collapse; font-size: 11px; table-layout: fixed;">
+<table style="width:100%; border-collapse: collapse; font-size: 10px; table-layout: fixed;">
     <thead>
         <tr>
             <th style="text-align:left; width:13%;">Dataset</th>
