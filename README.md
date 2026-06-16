@@ -160,88 +160,104 @@ Streamlined for high inference efficiency, maintaining extremely low trainable p
 </table>
 
 **Results at 322×322 (without cross-image encoder)**
-<table style="width:100%; border-collapse: collapse; font-size: 12px;">
+<table style="width:100%; border-collapse: collapse; font-size: 11px; table-layout: fixed;">
     <thead>
         <tr>
-            <th style="text-align:left;">Dataset</th>
-            <th>
+            <th style="text-align:left; width:13%;">Dataset</th>
+            <th style="width:18%;">
                 <a href="https://drive.google.com/file/d/1P4NrddzJ9nWo9Wdan3uDi6zS6E-ub2y6/view?usp=sharing">ViT-B</a><br>
-                R@1&nbsp;&nbsp;R@5&nbsp;&nbsp;R@10
+                <span style="white-space: nowrap;">R@1 R@5 R@10</span>
             </th>
-            <th>
+            <th style="width:18%;">
                 <a href="https://drive.google.com/file/d/1dML3VyYBixH4ZzNfoJavhKbS1b7hvif9/view?usp=sharing">ViT-L</a><br>
-                R@1&nbsp;&nbsp;R@5&nbsp;&nbsp;R@10
+                <span style="white-space: nowrap;">R@1 R@5 R@10</span>
             </th>
-            <th style="text-align:left;">Dataset</th>
-            <th>
+            <th style="text-align:left; width:13%;">Dataset</th>
+            <th style="width:18%;">
                 <a href="https://drive.google.com/file/d/1P4NrddzJ9nWo9Wdan3uDi6zS6E-ub2y6/view?usp=sharing">ViT-B</a><br>
-                R@1&nbsp;&nbsp;R@5&nbsp;&nbsp;R@10
+                <span style="white-space: nowrap;">R@1 R@5 R@10</span>
             </th>
-            <th>
+            <th style="width:18%;">
                 <a href="https://drive.google.com/file/d/1dML3VyYBixH4ZzNfoJavhKbS1b7hvif9/view?usp=sharing">ViT-L</a><br>
-                R@1&nbsp;&nbsp;R@5&nbsp;&nbsp;R@10
+                <span style="white-space: nowrap;">R@1 R@5 R@10</span>
             </th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>Pitts30k-test</td>
-            <td>93.4&nbsp;&nbsp;97.0&nbsp;&nbsp;97.9</td>
-            <td>94.7&nbsp;&nbsp;97.7&nbsp;&nbsp;98.4</td>
+            <td style="white-space: nowrap; font-family: monospace;">93.4 97.0 97.9</td>
+            <td style="white-space: nowrap; font-family: monospace;">94.7 97.7 98.4</td>
             <td>Pitts250k-test</td>
-            <td>95.7&nbsp;&nbsp;98.6&nbsp;&nbsp;99.2</td>
-            <td>96.9&nbsp;&nbsp;99.2&nbsp;&nbsp;99.6</td>
+            <td style="white-space: nowrap; font-family: monospace;">95.7 98.6 99.2</td>
+            <td style="white-space: nowrap; font-family: monospace;">96.9 99.2 99.6</td>
         </tr>
         <tr>
             <td>MSLS-val</td>
-            <td>93.4&nbsp;&nbsp;97.3&nbsp;&nbsp;97.6</td>
-            <td>94.2&nbsp;&nbsp;97.8&nbsp;&nbsp;98.1</td>
+            <td style="white-space: nowrap; font-family: monospace;">93.4 97.3 97.6</td>
+            <td style="white-space: nowrap; font-family: monospace;">94.2 97.8 98.1</td>
             <td>Nordland*</td>
-            <td>86.7&nbsp;&nbsp;95.9&nbsp;&nbsp;97.0</td>
-            <td>87.4&nbsp;&nbsp;96.2&nbsp;&nbsp;97.5</td>
+            <td style="white-space: nowrap; font-family: monospace;">86.7 95.9 97.0</td>
+            <td style="white-space: nowrap; font-family: monospace;">87.4 96.2 97.5</td>
         </tr>
         <tr>
             <td>Nordland**</td>
-            <td>94.1&nbsp;&nbsp;98.0&nbsp;&nbsp;98.8</td>
-            <td>94.8&nbsp;&nbsp;98.2&nbsp;&nbsp;98.9</td>
+            <td style="white-space: nowrap; font-family: monospace;">94.1 98.0 98.8</td>
+            <td style="white-space: nowrap; font-family: monospace;">94.8 98.2 98.9</td>
             <td>Eynsham</td>
-            <td>92.3&nbsp;&nbsp;95.8&nbsp;&nbsp;96.5</td>
-            <td>92.3&nbsp;&nbsp;95.9&nbsp;&nbsp;96.7</td>
+            <td style="white-space: nowrap; font-family: monospace;">92.3 95.8 96.5</td>
+            <td style="white-space: nowrap; font-family: monospace;">92.3 95.9 96.7</td>
         </tr>
         <tr>
             <td>Tokyo24/7</td>
-            <td>97.1&nbsp;&nbsp;98.4&nbsp;&nbsp;99.0</td>
-            <td>98.1&nbsp;&nbsp;98.1&nbsp;&nbsp;98.7</td>
+            <td style="white-space: nowrap; font-family: monospace;">97.1 98.4 99.0</td>
+            <td style="white-space: nowrap; font-family: monospace;">98.1 98.1 98.7</td>
             <td>SF-XL-Small</td>
-            <td>88.8&nbsp;&nbsp;90.5&nbsp;&nbsp;90.9</td>
-            <td>89.0&nbsp;&nbsp;91.8&nbsp;&nbsp;92.2</td>
+            <td style="white-space: nowrap; font-family: monospace;">88.8 90.5 90.9</td>
+            <td style="white-space: nowrap; font-family: monospace;">89.0 91.8 92.2</td>
         </tr>
         <tr>
             <td>SPED</td>
-            <td>91.8&nbsp;&nbsp;95.7&nbsp;&nbsp;96.5</td>
-            <td>92.1&nbsp;&nbsp;96.2&nbsp;&nbsp;96.9</td>
+            <td style="white-space: nowrap; font-family: monospace;">91.8 95.7 96.5</td>
+            <td style="white-space: nowrap; font-family: monospace;">92.1 96.2 96.9</td>
             <td>AmsterTime</td>
-            <td>63.1&nbsp;&nbsp;82.5&nbsp;&nbsp;86.2</td>
-            <td>65.6&nbsp;&nbsp;86.7&nbsp;&nbsp;90.4</td>
+            <td style="white-space: nowrap; font-family: monospace;">63.1 82.5 86.2</td>
+            <td style="white-space: nowrap; font-family: monospace;">65.6 86.7 90.4</td>
         </tr>
         <tr>
             <td>SF-XL-testv1</td>
-            <td>92.9&nbsp;&nbsp;95.6&nbsp;&nbsp;96.5</td>
-            <td>95.7&nbsp;&nbsp;97.4&nbsp;&nbsp;97.7</td>
+            <td style="white-space: nowrap; font-family: monospace;">92.9 95.6 96.5</td>
+            <td style="white-space: nowrap; font-family: monospace;">95.7 97.4 97.7</td>
             <td>SF-XL-testv2</td>
-            <td>94.6&nbsp;&nbsp;98.0&nbsp;&nbsp;98.7</td>
-            <td>94.8&nbsp;&nbsp;98.3&nbsp;&nbsp;99.0</td>
+            <td style="white-space: nowrap; font-family: monospace;">94.6 98.0 98.7</td>
+            <td style="white-space: nowrap; font-family: monospace;">94.8 98.3 99.0</td>
         </tr>
         <tr>
             <td>SF-XL-occlusion</td>
-            <td>57.9&nbsp;&nbsp;64.5&nbsp;&nbsp;68.4</td>
-            <td>51.3&nbsp;&nbsp;68.4&nbsp;&nbsp;73.7</td>
+            <td style="white-space: nowrap; font-family: monospace;">57.9 64.5 68.4</td>
+            <td style="white-space: nowrap; font-family: monospace;">51.3 68.4 73.7</td>
             <td>SF-XL-night</td>
-            <td>53.2&nbsp;&nbsp;65.7&nbsp;&nbsp;71.5</td>
-            <td>59.9&nbsp;&nbsp;73.8&nbsp;&nbsp;77.9</td>
+            <td style="white-space: nowrap; font-family: monospace;">53.2 65.7 71.5</td>
+            <td style="white-space: nowrap; font-family: monospace;">59.9 73.8 77.9</td>
         </tr>
     </tbody>
 </table>
+
+<style>
+table th,
+table td {
+    padding: 4px 5px;
+    line-height: 1.25;
+    text-align: center;
+}
+
+table td:first-child,
+table td:nth-child(4) {
+    text-align: left;
+    word-break: break-word;
+}
+</style>
+
 
 
 Or you can download **all models** at once at [this link](https://drive.google.com/drive/folders/1-nQi9fhJPuiqHkcrGqBoIwiemnQ2L1-m?usp=sharing).
