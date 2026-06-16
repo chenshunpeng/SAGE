@@ -163,28 +163,86 @@ Streamlined for high inference efficiency, maintaining extremely low trainable p
 <table style="width:100%; border-collapse: collapse; font-size: 12px;">
     <thead>
         <tr>
-            <th rowspan="2" style="text-align:left;">Dataset</th>
-            <th colspan="3"> <a href="https://drive.google.com/file/d/1P4NrddzJ9nWo9Wdan3uDi6zS6E-ub2y6/view?usp=sharing">ViT-B</a> </th>
-            <th colspan="3"> <a href="https://drive.google.com/file/d/1dML3VyYBixH4ZzNfoJavhKbS1b7hvif9/view?usp=sharing">ViT-L</a> </th>
-        </tr>
-        <tr>
-            <th>R@1</th><th>R@5</th><th>R@10</th>
-            <th>R@1</th><th>R@5</th><th>R@10</th>
+            <th style="text-align:left;">Dataset</th>
+            <th>
+                <a href="https://drive.google.com/file/d/1P4NrddzJ9nWo9Wdan3uDi6zS6E-ub2y6/view?usp=sharing">ViT-B</a><br>
+                R@1&nbsp;&nbsp;R@5&nbsp;&nbsp;R@10
+            </th>
+            <th>
+                <a href="https://drive.google.com/file/d/1dML3VyYBixH4ZzNfoJavhKbS1b7hvif9/view?usp=sharing">ViT-L</a><br>
+                R@1&nbsp;&nbsp;R@5&nbsp;&nbsp;R@10
+            </th>
+            <th style="text-align:left;">Dataset</th>
+            <th>
+                <a href="https://drive.google.com/file/d/1P4NrddzJ9nWo9Wdan3uDi6zS6E-ub2y6/view?usp=sharing">ViT-B</a><br>
+                R@1&nbsp;&nbsp;R@5&nbsp;&nbsp;R@10
+            </th>
+            <th>
+                <a href="https://drive.google.com/file/d/1dML3VyYBixH4ZzNfoJavhKbS1b7hvif9/view?usp=sharing">ViT-L</a><br>
+                R@1&nbsp;&nbsp;R@5&nbsp;&nbsp;R@10
+            </th>
         </tr>
     </thead>
     <tbody>
-        <tr><td>Pitts30k-test</td><td>93.4</td><td>97.0</td><td>97.9</td><td>94.7</td><td>97.7</td><td>98.4</td></tr>
-        <tr><td>MSLS-val</td><td>93.4</td><td>97.3</td><td>97.6</td><td>94.2</td><td>97.8</td><td>98.1</td></tr>
-        <tr><td>Nordland**</td><td>94.1</td><td>98.0</td><td>98.8</td><td>94.8</td><td>98.2</td><td>98.9</td></tr>
-        <tr><td>Tokyo24/7</td><td>97.1</td><td>98.4</td><td>99.0</td><td>98.1</td><td>98.1</td><td>98.7</td></tr>
-        <tr><td>SPED</td><td>91.8</td><td>95.7</td><td>96.5</td><td>92.1</td><td>96.2</td><td>96.9</td></tr>
-        <tr><td>Pitts250k-test</td><td>95.7</td><td>98.6</td><td>99.2</td><td>96.9</td><td>99.2</td><td>99.6</td></tr>
-        <tr><td>Nordland*</td><td>86.7</td><td>95.9</td><td>97.0</td><td>87.4</td><td>96.2</td><td>97.5</td></tr>
-        <tr><td>Eynsham</td><td>92.3</td><td>95.8</td><td>96.5</td><td>92.3</td><td>95.9</td><td>96.7</td></tr>
-        <tr><td>SF-XL-Small</td><td>88.8</td><td>90.5</td><td>90.9</td><td>89.0</td><td>91.8</td><td>92.2</td></tr>
-        <tr><td>AmsterTime</td><td>63.1</td><td>82.5</td><td>86.2</td><td>65.6</td><td>86.7</td><td>90.4</td></tr>
+        <tr>
+            <td>Pitts30k-test</td>
+            <td>93.4&nbsp;&nbsp;97.0&nbsp;&nbsp;97.9</td>
+            <td>94.7&nbsp;&nbsp;97.7&nbsp;&nbsp;98.4</td>
+            <td>Pitts250k-test</td>
+            <td>95.7&nbsp;&nbsp;98.6&nbsp;&nbsp;99.2</td>
+            <td>96.9&nbsp;&nbsp;99.2&nbsp;&nbsp;99.6</td>
+        </tr>
+        <tr>
+            <td>MSLS-val</td>
+            <td>93.4&nbsp;&nbsp;97.3&nbsp;&nbsp;97.6</td>
+            <td>94.2&nbsp;&nbsp;97.8&nbsp;&nbsp;98.1</td>
+            <td>Nordland*</td>
+            <td>86.7&nbsp;&nbsp;95.9&nbsp;&nbsp;97.0</td>
+            <td>87.4&nbsp;&nbsp;96.2&nbsp;&nbsp;97.5</td>
+        </tr>
+        <tr>
+            <td>Nordland**</td>
+            <td>94.1&nbsp;&nbsp;98.0&nbsp;&nbsp;98.8</td>
+            <td>94.8&nbsp;&nbsp;98.2&nbsp;&nbsp;98.9</td>
+            <td>Eynsham</td>
+            <td>92.3&nbsp;&nbsp;95.8&nbsp;&nbsp;96.5</td>
+            <td>92.3&nbsp;&nbsp;95.9&nbsp;&nbsp;96.7</td>
+        </tr>
+        <tr>
+            <td>Tokyo24/7</td>
+            <td>97.1&nbsp;&nbsp;98.4&nbsp;&nbsp;99.0</td>
+            <td>98.1&nbsp;&nbsp;98.1&nbsp;&nbsp;98.7</td>
+            <td>SF-XL-Small</td>
+            <td>88.8&nbsp;&nbsp;90.5&nbsp;&nbsp;90.9</td>
+            <td>89.0&nbsp;&nbsp;91.8&nbsp;&nbsp;92.2</td>
+        </tr>
+        <tr>
+            <td>SPED</td>
+            <td>91.8&nbsp;&nbsp;95.7&nbsp;&nbsp;96.5</td>
+            <td>92.1&nbsp;&nbsp;96.2&nbsp;&nbsp;96.9</td>
+            <td>AmsterTime</td>
+            <td>63.1&nbsp;&nbsp;82.5&nbsp;&nbsp;86.2</td>
+            <td>65.6&nbsp;&nbsp;86.7&nbsp;&nbsp;90.4</td>
+        </tr>
+        <tr>
+            <td>SF-XL-testv1</td>
+            <td>92.9&nbsp;&nbsp;95.6&nbsp;&nbsp;96.5</td>
+            <td>95.7&nbsp;&nbsp;97.4&nbsp;&nbsp;97.7</td>
+            <td>SF-XL-testv2</td>
+            <td>94.6&nbsp;&nbsp;98.0&nbsp;&nbsp;98.7</td>
+            <td>94.8&nbsp;&nbsp;98.3&nbsp;&nbsp;99.0</td>
+        </tr>
+        <tr>
+            <td>SF-XL-occlusion</td>
+            <td>57.9&nbsp;&nbsp;64.5&nbsp;&nbsp;68.4</td>
+            <td>51.3&nbsp;&nbsp;68.4&nbsp;&nbsp;73.7</td>
+            <td>SF-XL-night</td>
+            <td>53.2&nbsp;&nbsp;65.7&nbsp;&nbsp;71.5</td>
+            <td>59.9&nbsp;&nbsp;73.8&nbsp;&nbsp;77.9</td>
+        </tr>
     </tbody>
 </table>
+
 
 Or you can download **all models** at once at [this link](https://drive.google.com/drive/folders/1-nQi9fhJPuiqHkcrGqBoIwiemnQ2L1-m?usp=sharing).
 
