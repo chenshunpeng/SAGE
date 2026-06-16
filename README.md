@@ -69,6 +69,23 @@ python3 eval.py --eval_datasets_folder=/path/to/datasets --crossimage_encoder --
 ```
 Note: For PCA computation, the script prioritizes loading a local cache. If absent, it extracts up to $2^{14}$ samples to compute high-dimensional features in batches, fits Sklearn, and saves the PCA parameters.
 
+**Exact low-memory retrieval:**
+
+For large-scale benchmarks such as [SF-XL](https://github.com/gmberton/cosplace), the default evaluation path keeps all database descriptors in memory and builds a full FAISS flat index. If your server has limited RAM, enable `--efficient_ram_testing` to use the exact low-memory retrieval mode:
+
+```
+--efficient_ram_testing
+```
+
+This mode keeps the query descriptors in memory, streams database descriptors in dynamic chunks, searches each chunk with float32 `faiss.IndexFlatL2`, and merges the global Top-K results. Before feature extraction starts, the script reports the database size, chunk size, estimated minimum retrieval memory, recommended available memory, and current system memory.
+
+The `SF_XL` shortcut evaluates all four SF-XL query sets in one run, sharing the same database extraction and reporting results separately for `SF_XL_v1`, `SF_XL_v2`, `SF_XL_night`, and `SF_XL_occlusion`:
+
+```
+# ViT-B, no cross-image encoder
+python3 eval.py --eval_datasets_folder=/path/to/datasets --eval_dataset_names SF_XL --ckpt_path=./weights/SAGE_No-Encoder_Vit-B.pth --efficient_ram_testing
+```
+
 **SAGE without cross-image encoder:**
 
 Remove parameter `--crossimage_encoder` to run the SAGE without cross-image encoder.

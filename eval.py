@@ -67,6 +67,10 @@ for dataset_name in args.eval_dataset_names:
     logging.info(f"Test set: {test_ds}")
 
     recalls, recalls_str = test.test(args, test_ds, model, args.test_method, pca)
-    logging.info(f"Recalls on {dataset_name}: {recalls_str}")
+    if isinstance(recalls_str, dict):
+        for query_set_name, query_set_recalls_str in recalls_str.items():
+            logging.info(f"Recalls on {query_set_name}: {query_set_recalls_str}")
+    else:
+        logging.info(f"Recalls on {test_ds.dataset_name}: {recalls_str}")
 
 logging.info(f"Finished in {str(datetime.now() - start_time)[:-7]}")

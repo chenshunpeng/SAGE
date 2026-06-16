@@ -47,6 +47,7 @@ def setup_logging(save_dir, console="debug",
     base_formatter = logging.Formatter('%(asctime)s   %(message)s', "%Y-%m-%d %H:%M:%S")
     logger = logging.getLogger('')
     logger.setLevel(logging.DEBUG)
+    logging.getLogger("PIL").setLevel(logging.WARNING)
     
     if info_filename != None:
         info_file_handler = logging.FileHandler(join(save_dir, info_filename))
@@ -70,4 +71,3 @@ def setup_logging(save_dir, console="debug",
     def exception_handler(type_, value, tb):
         logger.info("\n" + "".join(traceback.format_exception(type, value, tb)))
     sys.excepthook = exception_handler
-

@@ -4,6 +4,7 @@ import torch
 import faiss
 import logging
 import numpy as np
+from collections import OrderedDict
 from glob import glob
 from tqdm import tqdm
 from PIL import Image
@@ -18,6 +19,17 @@ base_transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
 ])
+
+SF_XL_QUERY_FOLDERS = OrderedDict([
+    ("SF_XL_v1", "queries_v1"),
+    ("SF_XL_v2", "queries_v2"),
+    ("SF_XL_night", "queries_night"),
+    ("SF_XL_occlusion", "queries_occlusion"),
+])
+SF_XL_QUERY_ALIASES = {
+    dataset_name.lower(): (dataset_name, queries_folder)
+    for dataset_name, queries_folder in SF_XL_QUERY_FOLDERS.items()
+}
 
 def path_to_pil_img(path):
     return Image.open(path).convert("RGB")
@@ -60,7 +72,6 @@ class PCADataset(data.Dataset):
     def __len__(self):
         return len(self.images_paths)
 
-
 class BaseDataset(data.Dataset):
     """Dataset with images from database and queries, used for inference (testing and building cache).
     """
@@ -68,7 +79,16 @@ class BaseDataset(data.Dataset):
         super().__init__()
         self.args = args
         self.dataset_name = dataset_name
-        self.dataset_folder = join(datasets_folder, dataset_name, "images", split)
+        normalized_dataset_name = dataset_name.lower()
+        is_sf_xl_group = normalized_dataset_name == "sf_xl"
+        is_sf_xl_query_set = normalized_dataset_name in SF_XL_QUERY_ALIASES
+
+        if is_sf_xl_group or is_sf_xl_query_set:
+            if split != "test":
+                raise ValueError("SF_XL query sets are only available for the test split")
+            self.dataset_folder = join(datasets_folder, "SF_XL", split)
+        else:
+            self.dataset_folder = join(datasets_folder, dataset_name, "images", split)
         if not os.path.exists(self.dataset_folder): raise FileNotFoundError(f"Folder {self.dataset_folder} does not exist")
         
         self.resize = args.resize
@@ -76,11 +96,31 @@ class BaseDataset(data.Dataset):
         
         #### Read paths and UTM coordinates for all images.
         database_folder = join(self.dataset_folder, "database")
-        queries_folder  = join(self.dataset_folder, "queries")
         if not os.path.exists(database_folder): raise FileNotFoundError(f"Folder {database_folder} does not exist")
-        if not os.path.exists(queries_folder) : raise FileNotFoundError(f"Folder {queries_folder} does not exist")
         self.database_paths = sorted(glob(join(database_folder, "**", "*.jpg"), recursive=True))
-        self.queries_paths  = sorted(glob(join(queries_folder, "**", "*.jpg"),  recursive=True))
+
+        self.query_group_slices = None
+        if is_sf_xl_group:
+            self.queries_paths = []
+            self.query_group_slices = OrderedDict()
+            for query_set_name, queries_folder_name in SF_XL_QUERY_FOLDERS.items():
+                queries_folder = join(self.dataset_folder, queries_folder_name)
+                if not os.path.exists(queries_folder):
+                    raise FileNotFoundError(f"Folder {queries_folder} does not exist")
+                query_paths = sorted(glob(join(queries_folder, "**", "*.jpg"), recursive=True))
+                start_index = len(self.queries_paths)
+                self.queries_paths.extend(query_paths)
+                self.query_group_slices[query_set_name] = (start_index, len(self.queries_paths))
+        else:
+            if is_sf_xl_query_set:
+                canonical_name, queries_folder_name = SF_XL_QUERY_ALIASES[normalized_dataset_name]
+                self.dataset_name = canonical_name
+                queries_folder = join(self.dataset_folder, queries_folder_name)
+            else:
+                queries_folder = join(self.dataset_folder, "queries")
+            if not os.path.exists(queries_folder):
+                raise FileNotFoundError(f"Folder {queries_folder} does not exist")
+            self.queries_paths = sorted(glob(join(queries_folder, "**", "*.jpg"), recursive=True))
         # The format must be path/to/file/@utm_easting@utm_northing@...@.jpg
         self.database_utms = np.array([(path.split("@")[1], path.split("@")[2]) for path in self.database_paths]).astype(np.float64)
         self.queries_utms  = np.array([(path.split("@")[1], path.split("@")[2]) for path in self.queries_paths]).astype(np.float64)
@@ -132,6 +172,12 @@ class BaseDataset(data.Dataset):
     def __len__(self):
         return len(self.images_paths)
     def __repr__(self):
+        if self.query_group_slices:
+            group_counts = ", ".join(
+                f"{name}: {end - start}" for name, (start, end) in self.query_group_slices.items()
+            )
+            return (f"< {self.__class__.__name__}, {self.dataset_name} - #database: {self.database_num}; "
+                    f"#queries: {self.queries_num} ({group_counts}) >")
         return  (f"< {self.__class__.__name__}, {self.dataset_name} - #database: {self.database_num}; #queries: {self.queries_num} >")
     def get_positives(self):
         return self.soft_positives_per_query
