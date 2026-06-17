@@ -2,7 +2,13 @@
 
 This is the official repository for the ICLR 2026 paper "SAGE: Spatial-visual Adaptive Graph Exploration for Efficient Visual Place Recognition".
 
-[[ICLR OpenAccess](https://openreview.net/forum?id=DCpbEXqPvS)] [[ArXiv](https://arxiv.org/abs/2509.25723)] [[BibTex](https://github.com/chenshunpeng/SAGE?tab=readme-ov-file#Citation)]
+<p align="center">
+  <a href="https://chenshunpeng.github.io/projects/SAGE/"><img src="https://img.shields.io/badge/Project-Page-10B981?style=flat-square&labelColor=444444" alt="Project Page"></a>
+  <a href="https://openreview.net/forum?id=DCpbEXqPvS"><img src="https://img.shields.io/badge/OpenReview-SAGE-8B5CF6?style=flat-square&labelColor=444444" alt="OpenReview"></a>
+  <a href="https://arxiv.org/abs/2509.25723"><img src="https://img.shields.io/badge/arXiv-2509.25723-D32F2F?style=flat-square&labelColor=444444" alt="arXiv"></a>
+  <a href="https://iclr.cc/virtual/2026/poster/10010801"><img src="https://img.shields.io/badge/ICLR%202026-Poster-2563EB?style=flat-square&labelColor=444444" alt="ICLR Poster"></a>
+  <a href="https://github.com/chenshunpeng/SAGE"><img src="https://img.shields.io/github/stars/chenshunpeng/SAGE?style=flat-square&labelColor=444444&color=EAB308&logo=github" alt="GitHub stars"></a>
+</p>
 
 <img src="image/architecture.png" width="800px">
 
