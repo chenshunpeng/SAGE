@@ -20,16 +20,49 @@ base_transform = transforms.Compose([
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
 ])
 
-SF_XL_QUERY_FOLDERS = OrderedDict([
-    ("SF_XL_v1", "queries_v1"),
-    ("SF_XL_v2", "queries_v2"),
-    ("SF_XL_night", "queries_night"),
-    ("SF_XL_occlusion", "queries_occlusion"),
-])
-SF_XL_QUERY_ALIASES = {
-    dataset_name.lower(): (dataset_name, queries_folder)
-    for dataset_name, queries_folder in SF_XL_QUERY_FOLDERS.items()
+def normalize_dataset_key(dataset_name):
+    return dataset_name.lower().replace("-", "_")
+
+
+GROUPED_DATASETS = {
+    "sf_xl": {
+        "dataset_name": "SF_XL",
+        "path_parts": ("SF_XL",),
+        "database_folder": "database",
+        "query_folders": OrderedDict([
+            ("SF_XL_v1", "queries_v1"),
+            ("SF_XL_v2", "queries_v2"),
+            ("SF_XL_night", "queries_night"),
+            ("SF_XL_occlusion", "queries_occlusion"),
+        ]),
+    },
+    "svox": {
+        "dataset_name": "SVOX",
+        "path_parts": ("svox", "images"),
+        "database_folder": "gallery",
+        "query_folders": OrderedDict([
+            ("SVOX", "queries"),
+            ("SVOX-night", "queries_night"),
+            ("SVOX-overcast", "queries_overcast"),
+            ("SVOX-rain", "queries_rain"),
+            ("SVOX-snow", "queries_snow"),
+            ("SVOX-sun", "queries_sun"),
+        ]),
+        "aliases": {
+            "SVOX-base": ("SVOX", "queries"),
+            "SVOX_queries": ("SVOX", "queries"),
+        },
+    },
 }
+
+GROUPED_QUERY_ALIASES = {}
+for group_key, group_config in GROUPED_DATASETS.items():
+    for query_set_name, queries_folder in group_config["query_folders"].items():
+        alias_key = normalize_dataset_key(query_set_name)
+        if alias_key != group_key:
+            GROUPED_QUERY_ALIASES[alias_key] = (group_key, query_set_name, queries_folder)
+    for alias_name, query_set_info in group_config.get("aliases", {}).items():
+        GROUPED_QUERY_ALIASES[normalize_dataset_key(alias_name)] = (group_key, *query_set_info)
 
 def path_to_pil_img(path):
     return Image.open(path).convert("RGB")
@@ -79,31 +112,40 @@ class BaseDataset(data.Dataset):
         super().__init__()
         self.args = args
         self.dataset_name = dataset_name
-        normalized_dataset_name = dataset_name.lower()
-        is_sf_xl_group = normalized_dataset_name == "sf_xl"
-        is_sf_xl_query_set = normalized_dataset_name in SF_XL_QUERY_ALIASES
+        normalized_dataset_name = normalize_dataset_key(dataset_name)
+        group_config = GROUPED_DATASETS.get(normalized_dataset_name)
+        query_set_config = GROUPED_QUERY_ALIASES.get(normalized_dataset_name)
 
-        if is_sf_xl_group or is_sf_xl_query_set:
+        if group_config is not None or query_set_config is not None:
             if split != "test":
-                raise ValueError("SF_XL query sets are only available for the test split")
-            self.dataset_folder = join(datasets_folder, "SF_XL", split)
+                raise ValueError(f"{dataset_name} query sets are only available for the test split")
+            if query_set_config is not None:
+                group_key, query_set_name, queries_folder_name = query_set_config
+                group_config = GROUPED_DATASETS[group_key]
+                self.dataset_name = query_set_name
+            else:
+                self.dataset_name = group_config["dataset_name"]
+                queries_folder_name = None
+            self.dataset_folder = join(datasets_folder, *group_config["path_parts"], split)
+            database_folder_name = group_config["database_folder"]
         else:
             self.dataset_folder = join(datasets_folder, dataset_name, "images", split)
+            database_folder_name = "database"
         if not os.path.exists(self.dataset_folder): raise FileNotFoundError(f"Folder {self.dataset_folder} does not exist")
         
         self.resize = args.resize
         self.test_method = args.test_method
         
         #### Read paths and UTM coordinates for all images.
-        database_folder = join(self.dataset_folder, "database")
+        database_folder = join(self.dataset_folder, database_folder_name)
         if not os.path.exists(database_folder): raise FileNotFoundError(f"Folder {database_folder} does not exist")
         self.database_paths = sorted(glob(join(database_folder, "**", "*.jpg"), recursive=True))
 
         self.query_group_slices = None
-        if is_sf_xl_group:
+        if group_config is not None and query_set_config is None:
             self.queries_paths = []
             self.query_group_slices = OrderedDict()
-            for query_set_name, queries_folder_name in SF_XL_QUERY_FOLDERS.items():
+            for query_set_name, queries_folder_name in group_config["query_folders"].items():
                 queries_folder = join(self.dataset_folder, queries_folder_name)
                 if not os.path.exists(queries_folder):
                     raise FileNotFoundError(f"Folder {queries_folder} does not exist")
@@ -112,9 +154,7 @@ class BaseDataset(data.Dataset):
                 self.queries_paths.extend(query_paths)
                 self.query_group_slices[query_set_name] = (start_index, len(self.queries_paths))
         else:
-            if is_sf_xl_query_set:
-                canonical_name, queries_folder_name = SF_XL_QUERY_ALIASES[normalized_dataset_name]
-                self.dataset_name = canonical_name
+            if query_set_config is not None:
                 queries_folder = join(self.dataset_folder, queries_folder_name)
             else:
                 queries_folder = join(self.dataset_folder, "queries")

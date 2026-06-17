@@ -69,28 +69,29 @@ python3 eval.py --eval_datasets_folder=/path/to/datasets --crossimage_encoder --
 ```
 Note: For PCA computation, the script prioritizes loading a local cache. If absent, it extracts up to $2^{14}$ samples to compute high-dimensional features in batches, fits Sklearn, and saves the PCA parameters.
 
+**SAGE without cross-image encoder:**
+
+Remove parameter `--crossimage_encoder` to run the SAGE without cross-image encoder.
+
 **Exact low-memory retrieval:**
 
-For large-scale benchmarks such as [SF-XL](https://github.com/gmberton/cosplace), the default evaluation path keeps all database descriptors in memory and builds a full FAISS flat index. If your server has limited RAM, enable `--efficient_ram_testing`:
+For memory-limited evaluation, add `--efficient_ram_testing` to run exact float32 FAISS retrieval with dynamic database chunks. The script keeps query descriptors in memory, streams database descriptors chunk by chunk, merges the global Top-K results, and reports the estimated retrieval memory before feature extraction.
 
 ```
 --efficient_ram_testing
 ```
 
-This mode keeps the query descriptors in memory, streams database descriptors in dynamic chunks, searches each chunk with float32 `faiss.IndexFlatL2`, and merges the global Top-K results. Before feature extraction starts, the script reports the database size, chunk size, estimated minimum retrieval memory, recommended available memory, and current system memory.
-
 For the full [SF-XL](https://github.com/gmberton/cosplace) series, enabling this switch reduces the estimated retrieval-stage RAM from about $\color{red}{\mathbf{176.7\ GiB}}$ in the default all-in-memory path to about $\color{red}{\mathbf{1.85\ GiB}}$ minimum extra RAM (recommended available RAM: $\color{red}{\mathbf{2.32\ GiB}}$; model/DataLoader memory excluded).
 
-The `SF_XL` shortcut evaluates all four SF-XL query sets in one run, sharing the same database extraction and reporting results separately for `SF_XL_v1`, `SF_XL_v2`, `SF_XL_night`, and `SF_XL_occlusion`:
+The `SF_XL` and `SVOX` shortcuts evaluate all query subsets in one run with a shared database, reporting each subset separately (`SF_XL_v1/v2/night/occlusion` and `SVOX/night/overcast/rain/snow/sun`):
 
 ```
-# ViT-B, no cross-image encoder
+# SF-XL, ViT-B, no cross-image encoder
 python3 eval.py --eval_datasets_folder=/path/to/datasets --eval_dataset_names SF_XL --ckpt_path=./weights/SAGE_No-Encoder_Vit-B.pth --efficient_ram_testing
+
+# SVOX, ViT-B, no cross-image encoder
+python3 eval.py --eval_datasets_folder=/path/to/datasets --eval_dataset_names SVOX --ckpt_path=./weights/SAGE_No-Encoder_Vit-B.pth --efficient_ram_testing
 ```
-
-**SAGE without cross-image encoder:**
-
-Remove parameter `--crossimage_encoder` to run the SAGE without cross-image encoder.
 
 ## Trained Model
 
@@ -258,6 +259,30 @@ Streamlined for high inference efficiency, maintaining extremely low trainable p
             <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SF-XL-night</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">53.2 65.7 71.5</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">59.9 73.8 77.9</td>
+        </tr>
+        <tr>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SVOX</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">98.7 99.4 99.6</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">98.8 99.5 99.6</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SVOX-night</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">96.1 99.4 99.8</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">97.3 99.4 99.5</td>
+        </tr>
+        <tr>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SVOX-overcast</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">98.2 99.1 99.2</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">98.4 99.5 99.9</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SVOX-rain</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">98.0 99.4 99.7</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">98.9 99.8 99.9</td>
+        </tr>
+        <tr>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SVOX-snow</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">99.3 99.7 99.8</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">99.1 99.7 99.9</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SVOX-sun</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">98.0 99.3 99.6</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">98.2 99.5 99.8</td>
         </tr>
     </tbody>
 </table>

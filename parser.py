@@ -81,7 +81,7 @@ def parse_arguments():
         type=str, 
         nargs='+', 
         default=["sped", "amstertime", "Msls_740", "pitts30k", "tokyo247", "pitts250k", "nordland", "eynsham"],
-        help="List of datasets to evaluate on"
+        help="List of datasets to evaluate on. Use SF_XL or SVOX for grouped shared-database evaluation."
     )
     parser.add_argument("--crossimage_encoder", action='store_true', help="_")
     parser.add_argument("--ckpt_path", type=str, default=None,
