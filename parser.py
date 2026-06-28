@@ -28,8 +28,8 @@ def parse_arguments():
     # parser.add_argument("--mining", type=str, default="partial", choices=["partial", "full", "random", "msls_weighted"])
 
     # Inference parameters
-    parser.add_argument("--infer_batch_size", type=int, default=16,
-                        help="Batch size for inference (caching and testing)")
+    parser.add_argument("--infer_batch_size", type=int, default=None,
+                        help="Batch size for inference. If omitted, config.py selects it automatically.")
     # Model parameters
     parser.add_argument('--pca_dim', type=int, default=None, help="PCA dimension (number of principal components). If None, PCA is not used.")
     parser.add_argument('--fc_output_dim', type=int, default=None,
@@ -104,5 +104,13 @@ def parse_arguments():
     
     if args.pca_dim != None and args.pca_dataset_folder == None:
         raise ValueError("Please specify --pca_dataset_folder when using pca")
+
+    # Keep track of whether the user explicitly set the inference batch size.
+    # config.py uses this flag to avoid overwriting manual overrides.
+    args.infer_batch_size_was_set = args.infer_batch_size is not None
+    if args.infer_batch_size is None:
+        # Temporary fallback before per-dataset config is applied in eval.py.
+        # This also keeps PCA computation valid when it runs before evaluation.
+        args.infer_batch_size = 16
     
     return args

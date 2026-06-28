@@ -87,7 +87,7 @@ For memory-limited evaluation, add `--efficient_ram_testing` to run exact float3
 --efficient_ram_testing
 ```
 
-For the full [SF-XL](https://github.com/gmberton/cosplace) series, enabling this switch reduces the estimated retrieval-stage RAM from about $\color{red}{\mathbf{176.7\ GiB}}$ in the default all-in-memory path to about $\color{red}{\mathbf{1.85\ GiB}}$ minimum extra RAM (recommended available RAM: $\color{red}{\mathbf{2.32\ GiB}}$; model/DataLoader memory excluded).
+For the full [SF-XL](https://github.com/gmberton/cosplace) series, enabling this switch reduces the estimated retrieval-stage RAM from about $\color{red}{\mathbf{176.7\ GB}}$ in the default all-in-memory path to about $\color{red}{\mathbf{1.85\ GB}}$ minimum extra RAM (recommended available RAM: $\color{red}{\mathbf{2.32\ GB}}$; model/DataLoader memory excluded).
 
 The `SF_XL` and `SVOX` shortcuts evaluate all query subsets in one run with a shared database, reporting each subset separately (`SF_XL_v1/v2/night/occlusion` and `SVOX/night/overcast/rain/snow/sun`):
 
@@ -143,6 +143,11 @@ Equipped with the InteractHead module to model cross-image dependencies, achievi
         <tr><td>Nordland**</td><td>96.0</td><td>98.9</td><td>99.4</td><td>Tokyo24/7</td><td>97.5</td><td>99.0</td><td>99.4</td></tr>
         <tr><td>SPED</td><td>98.8</td><td>99.7</td><td>100.0</td><td>Pitts250k-test</td><td>98.4</td><td>99.4</td><td>99.6</td></tr>
         <tr><td>Eynsham</td><td>93.1</td><td>96.2</td><td>97.0</td><td>AmsterTime</td><td>83.5</td><td>93.3</td><td>95.4</td></tr>
+        <tr><td><kbd>SF-XL</kbd>-testv1</td><td>94.0</td><td>96.5</td><td>97.2</td><td><kbd>SF-XL</kbd>-testv2</td><td>93.8</td><td>97.0</td><td>98.2</td></tr>
+        <tr><td><kbd>SF-XL</kbd>-night</td><td>56.2</td><td>66.7</td><td>70.2</td><td><kbd>SF-XL</kbd>-occlusion</td><td>46.1</td><td>60.5</td><td>64.5</td></tr>
+        <tr><td><kbd>SVOX</kbd></td><td>98.8</td><td>99.4</td><td>99.6</td><td><kbd>SVOX</kbd>-night</td><td>97.7</td><td>99.6</td><td>99.6</td></tr>
+        <tr><td><kbd>SVOX</kbd>-overcast</td><td>98.4</td><td>99.2</td><td>99.7</td><td><kbd>SVOX</kbd>-rain</td><td>98.1</td><td>99.8</td><td>99.8</td></tr>
+        <tr><td><kbd>SVOX</kbd>-snow</td><td>99.2</td><td>99.7</td><td>99.8</td><td><kbd>SVOX</kbd>-sun</td><td>98.1</td><td>99.4</td><td>99.6</td></tr>
     </tbody>
 </table>
 
@@ -238,55 +243,55 @@ Streamlined for high inference efficiency, maintaining extremely low trainable p
             <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">Tokyo24/7</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">97.1 98.4 99.0</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">98.1 98.1 98.7</td>
-            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SF-XL-Small</td>
-            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">88.8 90.5 90.9</td>
-            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">89.0 91.8 92.2</td>
-        </tr>
-        <tr>
-            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SPED</td>
-            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">91.8 95.7 96.5</td>
-            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">92.1 96.2 96.9</td>
             <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">AmsterTime</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">63.1 82.5 86.2</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">65.6 86.7 90.4</td>
         </tr>
         <tr>
-            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SF-XL-testv1</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SPED</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">91.8 95.7 96.5</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">92.1 96.2 96.9</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;"><kbd>SF-XL</kbd>-Small</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">88.8 90.5 90.9</td>
+            <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">89.0 91.8 92.2</td>
+        </tr>
+        <tr>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;"><kbd>SF-XL</kbd>-testv1</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">92.9 95.6 96.5</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">95.7 97.4 97.7</td>
-            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SF-XL-testv2</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;"><kbd>SF-XL</kbd>-testv2</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">94.6 98.0 98.7</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">94.8 98.3 99.0</td>
         </tr>
         <tr>
-            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SF-XL-occlusion</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;"><kbd>SF-XL</kbd>-occlusion</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">57.9 64.5 68.4</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">51.3 68.4 73.7</td>
-            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SF-XL-night</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;"><kbd>SF-XL</kbd>-night</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">53.2 65.7 71.5</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">59.9 73.8 77.9</td>
         </tr>
         <tr>
-            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SVOX</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;"><kbd>SVOX</kbd></td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">98.7 99.4 99.6</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">98.8 99.5 99.6</td>
-            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SVOX-night</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;"><kbd>SVOX</kbd>-night</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">96.1 99.4 99.8</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">97.3 99.4 99.5</td>
         </tr>
         <tr>
-            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SVOX-overcast</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;"><kbd>SVOX</kbd>-overcast</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">98.2 99.1 99.2</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">98.4 99.5 99.9</td>
-            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SVOX-rain</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;"><kbd>SVOX</kbd>-rain</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">98.0 99.4 99.7</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">98.9 99.8 99.9</td>
         </tr>
         <tr>
-            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SVOX-snow</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;"><kbd>SVOX</kbd>-snow</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">99.3 99.7 99.8</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">99.1 99.7 99.9</td>
-            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;">SVOX-sun</td>
+            <td style="text-align:left; padding:4px 5px; line-height:1.25; word-break:break-word;"><kbd>SVOX</kbd>-sun</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">98.0 99.3 99.6</td>
             <td style="padding:4px 5px; line-height:1.25; text-align:center; white-space:nowrap; font-family:monospace;">98.2 99.5 99.8</td>
         </tr>

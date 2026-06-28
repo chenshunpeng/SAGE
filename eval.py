@@ -63,6 +63,11 @@ logging.info(f"Starting evaluation on {len(args.eval_dataset_names)} datasets: {
 
 for dataset_name in args.eval_dataset_names:
     args = apply_config(args, dataset_name)
+    logging.info(
+        f"Evaluation config for {dataset_name}: "
+        f"resize={args.resize}, infer_batch_size={args.infer_batch_size}, "
+        f"crossimage_encoder={args.crossimage_encoder}"
+    )
     test_ds = datasets_ws.BaseDataset(args, args.eval_datasets_folder, dataset_name, "test")
     logging.info(f"Test set: {test_ds}")
 
