@@ -6,7 +6,7 @@ This is the official repository for the ICLR 2026 paper "SAGE: Spatial-visual Ad
   <a href="https://chenshunpeng.github.io/projects/SAGE/"><img src="https://img.shields.io/badge/Project-Page-10B981?style=flat-square&labelColor=444444" alt="Project Page"></a>
   <a href="https://openreview.net/forum?id=DCpbEXqPvS"><img src="https://img.shields.io/badge/OpenReview-SAGE-8B5CF6?style=flat-square&labelColor=444444" alt="OpenReview"></a>
   <a href="https://arxiv.org/abs/2509.25723"><img src="https://img.shields.io/badge/arXiv-2509.25723-D32F2F?style=flat-square&labelColor=444444" alt="arXiv"></a>
-  <a href="https://huggingface.co/shunpeng/SAGE"><img src="https://img.shields.io/badge/🤗%20Hugging%20Face-Checkpoints-FFD21E?style=flat-square&labelColor=444444" alt="Hugging Face Checkpoints"></a>
+  <a href="https://huggingface.co/shunpeng/SAGE"><img src="https://img.shields.io/badge/🤗%20Hugging%20Face-Models-FFD21E?style=flat-square&labelColor=444444" alt="Hugging Face Checkpoints"></a>
   <a href="https://huggingface.co/spaces/shunpeng/sage-visual-place-recognition"><img src="https://img.shields.io/badge/🤗%20Spaces-Live%20Demo-06B6D4?style=flat-square&labelColor=444444" alt="Hugging Face Spaces Demo"></a>
   <a href="https://iclr.cc/virtual/2026/poster/10010801"><img src="https://img.shields.io/badge/ICLR%202026-Poster-2563EB?style=flat-square&labelColor=444444" alt="ICLR Poster"></a>
   <a href="https://github.com/chenshunpeng/SAGE"><img src="https://img.shields.io/github/stars/chenshunpeng/SAGE?style=flat-square&labelColor=444444&color=EAB308&logo=github" alt="GitHub stars"></a>
