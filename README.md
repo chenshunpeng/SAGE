@@ -7,6 +7,7 @@ This is the official repository for the ICLR 2026 paper "SAGE: Spatial-visual Ad
   <a href="https://openreview.net/forum?id=DCpbEXqPvS"><img src="https://img.shields.io/badge/OpenReview-SAGE-8B5CF6?style=flat-square&labelColor=444444" alt="OpenReview"></a>
   <a href="https://arxiv.org/abs/2509.25723"><img src="https://img.shields.io/badge/arXiv-2509.25723-D32F2F?style=flat-square&labelColor=444444" alt="arXiv"></a>
   <a href="https://huggingface.co/shunpeng/SAGE"><img src="https://img.shields.io/badge/🤗%20Hugging%20Face-Checkpoints-FFD21E?style=flat-square&labelColor=444444" alt="Hugging Face Checkpoints"></a>
+  <a href="https://huggingface.co/spaces/shunpeng/sage-visual-place-recognition"><img src="https://img.shields.io/badge/🤗%20Spaces-Live%20Demo-06B6D4?style=flat-square&labelColor=444444" alt="Hugging Face Spaces Demo"></a>
   <a href="https://iclr.cc/virtual/2026/poster/10010801"><img src="https://img.shields.io/badge/ICLR%202026-Poster-2563EB?style=flat-square&labelColor=444444" alt="ICLR Poster"></a>
   <a href="https://github.com/chenshunpeng/SAGE"><img src="https://img.shields.io/github/stars/chenshunpeng/SAGE?style=flat-square&labelColor=444444&color=EAB308&logo=github" alt="GitHub stars"></a>
 </p>
@@ -16,6 +17,16 @@ This is the official repository for the ICLR 2026 paper "SAGE: Spatial-visual Ad
 ## Summary
 
 To address the limitations of static sampling policies, SAGE introduces a dynamic, "slow thinking" training paradigm that continuously reconstructs an online geo-visual graph during training. This architecture ensures the sampling strategy stays synchronized with the model's evolving embedding space, allowing a greedy weighted clique expansion sampler to iteratively mine the most challenging and informative spatial-visual neighborhoods. To further enhance feature representation without heavy overhead, SAGE incorporates a lightweight Soft Probing (SoftP) module that utilizes data-driven residual weighting to amplify discriminative local patches before aggregation. By applying parameter-efficient fine-tuning on a frozen DINOv2 backbone, SAGE achieves SOTA across eight VPR benchmarks, delivering exceptional robustness and parameter efficiency for large-scale geo-localization.
+
+## Live Demo
+
+Try SAGE directly in our [Hugging Face Spaces Live Demo](https://huggingface.co/spaces/shunpeng/sage-visual-place-recognition), with no local installation required. Upload a **query image** and a set of **gallery images** (reference places), choose the number of Top-K matches, and click **Recognize Place**. The demo ranks the closest gallery images and displays their retrieval order and L2 distances.
+
+<p align="center">
+  <a href="https://huggingface.co/spaces/shunpeng/sage-visual-place-recognition">
+    <img src="image/HF_Spaces_SAGE.png" width="100%" alt="SAGE visual place recognition demo on Hugging Face Spaces">
+  </a>
+</p>
 
 ## Getting Started
 
@@ -318,7 +329,8 @@ Or you can download **all models** at once at [this link](https://drive.google.c
 - [ ] More detailed documentation (coming soon).
 
 ## Related Work
-Our another AAAI 2025 work (two-stage VPR based on DINOv2) [FoL](https://arxiv.org/abs/2504.09881) achieved SOTA performance on several datasets. The code is released at [here](https://github.com/chenshunpeng/FoL).
+- Our another AAAI 2025 work (two-stage VPR based on DINOv2) [FoL](https://arxiv.org/abs/2504.09881) achieved SOTA performance on several datasets. The code is released at [here](https://github.com/chenshunpeng/FoL).
+- Our follow-up work [FoL++](https://arxiv.org/abs/2604.22390) further advances visual place recognition.
 
 ## Acknowledgements
 Parts of this repo are inspired by the following repositories:
@@ -326,6 +338,8 @@ Parts of this repo are inspired by the following repositories:
 - [CliqueMining](https://github.com/serizba/cliquemining), [SALAD](https://github.com/serizba/salad)
 - [Visual Geo-localization benchmark](https://github.com/gmberton/deep-visual-geo-localization-benchmark), [VPR-datasets-downloader](https://github.com/gmberton/VPR-datasets-downloader)
 - [GSV-Cities](https://github.com/amaralibey/gsv-cities), [MixVPR](https://github.com/amaralibey/MixVPR)
+
+We thank the Hugging Face open-source team for their contributions to the interactive demo.
 
 ## Citation
 If you find this repo useful for your research, please consider leaving a star⭐️ and citing the paper.
