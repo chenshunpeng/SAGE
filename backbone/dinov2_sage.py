@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+from backbone.vision_transformer import vit_base, vit_giant2, vit_large, vit_small
 # from .PSRP import *
 #from .adapter import Adapter
 DINOV2_ARCHS = {
@@ -7,6 +8,13 @@ DINOV2_ARCHS = {
     'dinov2_vitb14': 768,
     'dinov2_vitl14': 1024,
     'dinov2_vitg14': 1536,
+}
+
+DINOV2_BUILDERS = {
+    'dinov2_vits14': vit_small,
+    'dinov2_vitb14': vit_base,
+    'dinov2_vitl14': vit_large,
+    'dinov2_vitg14': vit_giant2,
 }
 
 class DPN(nn.Module):
@@ -57,12 +65,15 @@ class DINOv2(nn.Module):
         super().__init__()
 
         assert model_name in DINOV2_ARCHS.keys(), f'Unknown model name {model_name}'
-
-        # Recommended: Load directly from GitHub (if offline usage is not strictly required)
-        self.model = torch.hub.load('facebookresearch/dinov2', model_name)
-        # If your project requires offline loading, use a generic placeholder instead of an absolute path:
-        # self.model = torch.hub.load('/path/to/your/local/facebookresearch_dinov2_main/', model_name, source='local')
-
+        model_config = {
+            'img_size': 518,
+            'patch_size': 14,
+            'init_values': 1.0,
+            'block_chunks': 0,
+        }
+        if model_name == 'dinov2_vitg14':
+            model_config['ffn_layer'] = 'swiglufused'
+        self.model = DINOV2_BUILDERS[model_name](**model_config)
         self.num_channels = DINOV2_ARCHS[model_name]
         self.num_trainable_blocks = num_trainable_blocks
         self.num_recalib = num_recalib_blocks

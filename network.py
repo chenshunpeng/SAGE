@@ -6,21 +6,18 @@ from aggregators.SAGE import SoftP
 class SAGE(nn.Module):
     """The used networks are composed of a backbone and an aggregation layer.
     """
-    def __init__(self, args):
+    def __init__(self, args, backbone_arch='dinov2_vitl14', num_trainable_blocks=0):
         super().__init__()
-        backbone_arch = 'dinov2_vitl14'
-        # backbone_arch = 'dinov2_vitb14'
         backbone_config = {
             'norm_layer': True,
             'num_recalib_blocks': 4,
-            'num_trainable_blocks': 0,
+            'num_trainable_blocks': num_trainable_blocks,
             'recalibration': 'dpn_s1',
             'return_token': True
         }
         self.backbone = DINOv2(model_name=backbone_arch, **backbone_config)
         agg_config = {
-            'num_channels': 1024,
-            # 'num_channels': 768,
+            'num_channels': self.backbone.num_channels,
             'num_clusters': 64,
             'cluster_dim': 128,
             'token_dim': 256,

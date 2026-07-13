@@ -22,7 +22,6 @@ from .layer_scale import LayerScale
 from .mlp import Mlp
 
 import torch.nn.functional as F
-from timm.models.layers import DropPath
 import math
 
 logger = logging.getLogger("dinov2")
@@ -121,6 +120,7 @@ class Block(nn.Module):
         norm_layer: Callable[..., nn.Module] = nn.LayerNorm,
         attn_class: Callable[..., nn.Module] = Attention,
         ffn_layer: Callable[..., nn.Module] = Mlp,
+        use_adapter: bool = False,
     ) -> None:
         super().__init__()
         # print(f"biases: qkv: {qkv_bias}, proj: {proj_bias}, ffn: {ffn_bias}")
@@ -150,7 +150,7 @@ class Block(nn.Module):
 
         self.sample_drop_ratio = drop_path
 
-        self.adapter = MulConvAdapter(768, 384, 192, 24, 96, 24, 96) #fc_in_channels, in_channels, ch1x1, ch3x3in, ch3x3out, ch5x5in, ch5x5out
+        self.adapter = MulConvAdapter(768, 384, 192, 24, 96, 24, 96) if use_adapter else None
         drop_path = 0.
         self.drop_path = DropPath(drop_path) if drop_path > 0. else nn.Identity()
     
@@ -159,7 +159,11 @@ class Block(nn.Module):
             return self.ls1(self.attn(self.norm1(x)))
 
         def ffn_residual_func(x: Tensor) -> Tensor:
-            return self.ls2(self.mlp(self.norm2(x))+self.drop_path(0.2*self.adapter(self.norm2(x))))
+            x_norm = self.norm2(x)
+            residual = self.mlp(x_norm)
+            if self.adapter is not None:
+                residual = residual + self.drop_path(0.2 * self.adapter(x_norm))
+            return self.ls2(residual)
 
         if self.training and self.sample_drop_ratio > 0.1:
             # the overhead is compensated only for a drop path rate larger than 0.1
@@ -289,7 +293,11 @@ class NestedTensorBlock(Block):
                 return self.attn(self.norm1(x), attn_bias=attn_bias)
 
             def ffn_residual_func(x: Tensor, attn_bias=None) -> Tensor:
-                return self.mlp(self.norm2(x))+self.drop_path(0.2*self.adapter(self.norm2(x)))
+                x_norm = self.norm2(x)
+                residual = self.mlp(x_norm)
+                if self.adapter is not None:
+                    residual = residual + self.drop_path(0.2 * self.adapter(x_norm))
+                return residual
 
             x_list = drop_add_residual_stochastic_depth_list(
                 x_list,
@@ -310,7 +318,11 @@ class NestedTensorBlock(Block):
                 return self.ls1(self.attn(self.norm1(x), attn_bias=attn_bias))
 
             def ffn_residual_func(x: Tensor, attn_bias=None) -> Tensor:
-                return self.ls2(self.mlp(self.norm2(x))+self.drop_path(0.2*self.adapter(self.norm2(x))))
+                x_norm = self.norm2(x)
+                residual = self.mlp(x_norm)
+                if self.adapter is not None:
+                    residual = residual + self.drop_path(0.2 * self.adapter(x_norm))
+                return self.ls2(residual)
 
             attn_bias, x = get_attn_bias_and_cat(x_list)
             x = x + attn_residual_func(x, attn_bias=attn_bias)

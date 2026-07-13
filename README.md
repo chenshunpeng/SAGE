@@ -28,6 +28,23 @@ Try SAGE directly in our [Hugging Face Spaces Live Demo](https://huggingface.co/
   </a>
 </p>
 
+## Quick Start with PyTorch Hub
+
+Load any released SAGE variant directly from GitHub:
+
+```python
+import torch
+
+# Full SAGE with cross-image encoder
+sage = torch.hub.load("chenshunpeng/SAGE", "sage", pretrained=True, trust_repo=True)
+
+# SAGE ViT-B without cross-image encoder
+sage_vitb = torch.hub.load("chenshunpeng/SAGE", "sage_vitb", pretrained=True, trust_repo=True)
+
+# SAGE ViT-L without cross-image encoder
+sage_vitl = torch.hub.load("chenshunpeng/SAGE", "sage_vitl", pretrained=True, trust_repo=True)
+```
+
 ## Getting Started
 
 This repo follows the [Visual Geo-localization Benchmark](https://github.com/gmberton/deep-visual-geo-localization-benchmark). You can refer to it ([VPR-datasets-downloader](https://github.com/gmberton/VPR-datasets-downloader)) to prepare datasets. The dataset should be organized in a directory tree as such:
