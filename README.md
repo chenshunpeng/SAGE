@@ -14,11 +14,21 @@ This is the official repository for the ICLR 2026 paper "SAGE: Spatial-visual Ad
 
 <img src="image/architecture.png" width="800px">
 
-## Summary
+<a id="summary"></a>
+
+## 📝 Summary
 
 To address the limitations of static sampling policies, SAGE introduces a dynamic, "slow thinking" training paradigm that continuously reconstructs an online geo-visual graph during training. This architecture ensures the sampling strategy stays synchronized with the model's evolving embedding space, allowing a greedy weighted clique expansion sampler to iteratively mine the most challenging and informative spatial-visual neighborhoods. To further enhance feature representation without heavy overhead, SAGE incorporates a lightweight Soft Probing (SoftP) module that utilizes data-driven residual weighting to amplify discriminative local patches before aggregation. By applying parameter-efficient fine-tuning on a frozen DINOv2 backbone, SAGE achieves SOTA across eight VPR benchmarks, delivering exceptional robustness and parameter efficiency for large-scale geo-localization.
 
-## Live Demo
+## 📑 Contents
+
+- [Summary](#summary) · [Live Demo](#live-demo) · [Installation](#installation)
+- [Torch Hub](#torch-hub) · [Dataset Preparation](#dataset-preparation) · [Evaluation](#evaluation)
+- [Models and Results](#pretrained-models-and-results) · [Related Work](#related-work) · [Citation](#citation)
+
+<a id="live-demo"></a>
+
+## 🤗 Live Demo
 
 Try SAGE directly in our [Hugging Face Spaces Live Demo](https://huggingface.co/spaces/shunpeng/sage-visual-place-recognition), with no local installation required. Upload a **query image** and a set of **gallery images** (reference places), choose the number of Top-K matches, and click **Recognize Place**. The demo ranks the closest gallery images and displays their retrieval order and L2 distances.
 
@@ -28,7 +38,9 @@ Try SAGE directly in our [Hugging Face Spaces Live Demo](https://huggingface.co/
   </a>
 </p>
 
-## Quick Start with PyTorch Hub
+<a id="torch-hub"></a>
+
+## ⚡ Quick Start with PyTorch Hub
 
 Load any released SAGE variant directly from GitHub:
 
@@ -45,28 +57,31 @@ sage_vitb = torch.hub.load("chenshunpeng/SAGE", "sage_vitb", pretrained=True, tr
 sage_vitl = torch.hub.load("chenshunpeng/SAGE", "sage_vitl", pretrained=True, trust_repo=True)
 ```
 
-## Getting Started
+For image inference, use the same preprocessing as the evaluation pipeline:
 
-This repo follows the [Visual Geo-localization Benchmark](https://github.com/gmberton/deep-visual-geo-localization-benchmark). You can refer to it ([VPR-datasets-downloader](https://github.com/gmberton/VPR-datasets-downloader)) to prepare datasets. The dataset should be organized in a directory tree as such:
+```python
+from PIL import Image
+from torchvision import transforms
 
-```
-├── datasets_vg
-    └── datasets
-        └── pitts30k
-            └── images
-                ├── train
-                │   ├── database
-                │   └── queries
-                ├── val
-                │   ├── database
-                │   └── queries
-                └── test
-                    ├── database
-                    └── queries
+transform = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
+    transforms.Resize((322, 322), antialias=True),
+])
+
+image = transform(Image.open("example.jpg").convert("RGB")).unsqueeze(0)
+with torch.inference_mode():
+    descriptor = sage_vitb(image)  # [1, 8448]
 ```
 
-## Setup & Requirements
+The No-Encoder variants return L2-normalized descriptors. Full `sage` jointly models images in the same batch, so its descriptors may depend on batch composition; prefer `sage_vitb` or `sage_vitl` for independent image retrieval.
+
+<a id="installation"></a>
+
+## 🛠️ Installation
+
 **Quick install:**
+
 ```bash
 # create and activate conda env
 conda create -n sage python=3.10.15 -y
@@ -75,7 +90,9 @@ conda activate sage
 # install dependencies
 pip install -r requirements.txt
 ```
+
 **Key dependencies:**
+
 ```
 faiss-gpu==1.7.2
 numpy==1.26.4
@@ -86,9 +103,56 @@ torch==2.1.0
 torchvision==0.16.0
 xformers==0.0.22
 ```
+
 > **Note — reproducibility:** Feature extraction and retrieval are sensitive to minor numerical differences across versions of libraries like `faiss-gpu`, `torch`, and `numpy`. Please use the exact versions in [requirements.txt](https://github.com/chenshunpeng/SAGE/blob/main/requirements.txt).
 
-## Test
+<a id="dataset-preparation"></a>
+
+## 📁 Dataset Preparation
+
+This repo follows the [Visual Geo-localization Benchmark](https://github.com/gmberton/deep-visual-geo-localization-benchmark). You can use the [VPR-datasets-downloader](https://github.com/gmberton/VPR-datasets-downloader) to prepare standard datasets. We recommend organizing them under a shared root directory:
+
+```
+datasets/
+├── pitts30k/
+│   └── images/
+│       ├── train/
+│       │   ├── database/
+│       │   └── queries/
+│       ├── val/
+│       │   ├── database/
+│       │   └── queries/
+│       └── test/
+│           ├── database/
+│           └── queries/
+├── msls/
+├── tokyo247/
+├── nordland/
+├── eynsham/
+├── SF_XL/
+│   └── test/
+│       ├── database/
+│       ├── queries_v1/
+│       ├── queries_v2/
+│       ├── queries_night/
+│       └── queries_occlusion/
+└── svox/
+    └── images/
+        └── test/
+            ├── gallery/
+            ├── queries/
+            ├── queries_night/
+            ├── queries_overcast/
+            ├── queries_rain/
+            ├── queries_snow/
+            └── queries_sun/
+```
+
+For standard datasets, image filenames must retain the UTM-coordinate format expected by the benchmark, such as `@easting@northing@...jpg`.
+
+<a id="evaluation"></a>
+
+## 📊 Evaluation
 
 Download checkpoints from the Hugging Face🤗 :
 ```
@@ -139,7 +203,9 @@ python3 eval.py --eval_datasets_folder=/path/to/datasets --eval_dataset_names SF
 python3 eval.py --eval_datasets_folder=/path/to/datasets --eval_dataset_names SVOX --ckpt_path=./weights/SAGE_No-Encoder_Vit-B.pth --efficient_ram_testing
 ```
 
-## Trained Model
+<a id="pretrained-models-and-results"></a>
+
+## 📈 Pretrained Models and Results
 
 **🔥 Performance Edition.**
 Equipped with the InteractHead module to model cross-image dependencies, achieving maximum retrieval accuracy.
@@ -340,16 +406,22 @@ Streamlined for high inference efficiency, maintaining extremely low trainable p
 
 Or you can download **all models** at once at [this link](https://drive.google.com/drive/folders/1-nQi9fhJPuiqHkcrGqBoIwiemnQ2L1-m?usp=sharing).
 
-## To-do
+<a id="to-do"></a>
+
+## ✅ To-do
 - [x] Public release of evaluation code and pretrained SAGE model.
 - [ ] Public release of the training code (coming soon).
 - [ ] More detailed documentation (coming soon).
 
-## Related Work
+<a id="related-work"></a>
+
+## 📚 Related Work
 - Our another AAAI 2025 work (two-stage VPR based on DINOv2) [FoL](https://arxiv.org/abs/2504.09881) achieved SOTA performance on several datasets. The code is released at [here](https://github.com/chenshunpeng/FoL).
 - Our follow-up work [FoL++](https://arxiv.org/abs/2604.22390) further advances visual place recognition.
 
-## Acknowledgements
+<a id="acknowledgements"></a>
+
+## 🙏 Acknowledgements
 Parts of this repo are inspired by the following repositories:
 - [SuperVLAD](https://github.com/Lu-Feng/SuperVLAD), [CricaVPR](https://github.com/Lu-Feng/CricaVPR)
 - [CliqueMining](https://github.com/serizba/cliquemining), [SALAD](https://github.com/serizba/salad)
@@ -358,7 +430,9 @@ Parts of this repo are inspired by the following repositories:
 
 We thank the Hugging Face open-source team for their contributions to the interactive demo.
 
-## Citation
+<a id="citation"></a>
+
+## 📌 Citation
 If you find this repo useful for your research, please consider leaving a star⭐️ and citing the paper.
 ```
 @inproceedings{SAGE,
