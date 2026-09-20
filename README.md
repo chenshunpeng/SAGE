@@ -12,7 +12,53 @@ This is the official repository for the ICLR 2026 paper "SAGE: Spatial-visual Ad
   <a href="https://github.com/chenshunpeng/SAGE"><img src="https://img.shields.io/github/stars/chenshunpeng/SAGE?style=flat-square&labelColor=444444&color=EAB308&logo=github" alt="GitHub stars"></a>
 </p>
 
-<img src="image/architecture.png" width="800px">
+<div align="center">
+
+  <a href="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge-link?eval=31170">
+    <img src="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge.svg?eval=31170&live=1" alt="Papers with Code: SOTA on AmsterTime">
+  </a>
+  <a href="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge-link?eval=31177">
+    <img src="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge.svg?eval=31177&live=1" alt="Papers with Code: SOTA on Eynsham">
+  </a>
+  <a href="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge-link?eval=32011">
+    <img src="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge.svg?eval=32011&live=1" alt="Papers with Code: SOTA on SF-XL Night">
+  </a>
+  <br>
+  <a href="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge-link?eval=31186">
+    <img src="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge.svg?eval=31186&live=1" alt="Papers with Code: SOTA on SF-XL test v1">
+  </a>
+  <a href="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge-link?eval=31189">
+    <img src="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge.svg?eval=31189&live=1" alt="Papers with Code: SOTA on SF-XL test v2">
+  </a>
+  <a href="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge-link?eval=31193">
+    <img src="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge.svg?eval=31193&live=1" alt="Papers with Code: SOTA on SVOX Night">
+  </a>
+  <br>
+  <a href="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge-link?eval=31393">
+    <img src="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge.svg?eval=31393&live=1" alt="Papers with Code: SOTA on SVOX Overcast">
+  </a>
+  <a href="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge-link?eval=31396">
+    <img src="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge.svg?eval=31396&live=1" alt="Papers with Code: SOTA on SVOX Rain">
+  </a>
+  <a href="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge-link?eval=31399">
+    <img src="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge.svg?eval=31399&live=1" alt="Papers with Code: SOTA on SVOX Snow">
+  </a>
+  <br>
+  <a href="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge-link?eval=31195">
+    <img src="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge.svg?eval=31195&live=1" alt="Papers with Code: SOTA on SVOX Sun">
+  </a>
+  <a href="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge-link?eval=32015">
+    <img src="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge.svg?eval=32015&live=1" alt="Papers with Code: #2 on SF-XL Occlusion">
+  </a>
+  <a href="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge-link?eval=31175">
+    <img src="https://paperswithcode.co/api/v1/papers/2509.25723/leaderboard-badge.svg?eval=31175&live=1" alt="Papers with Code: #3 on SPEDTest">
+  </a>
+
+</div>
+
+<div align="center">
+  <img src="image/architecture.png" width="800px">
+</div>
 
 <a id="summary"></a>
 
